@@ -68,13 +68,16 @@
       }
 
       var allowSingleDeselect = iElm.attr('allow-single-deselect') !== undefined ? true : false;
-
+      
+      var inheritSelectClasses = iElm.data('inherit_select_classes') !== undefined ? true : false;
+      
       iElm.chosen({
         width: '100%',
         max_selected_options: maxSelection,
         disable_search_threshold: searchThreshold,
         search_contains: true,
-        allow_single_deselect: allowSingleDeselect
+        allow_single_deselect: allowSingleDeselect,
+        inherit_select_classes:inheritSelectClasses
       });
 
       iElm.on('change', function () {
