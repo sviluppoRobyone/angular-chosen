@@ -56,6 +56,7 @@
 
     /* Linker for the directive */
     linker = function ($scope, iElm, iAttr) {
+       
       var maxSelection = parseInt(iAttr.maxSelection, 10),
         searchThreshold = parseInt(iAttr.searchThreshold, 10);
 
@@ -83,7 +84,10 @@
       iElm.on('change', function () {
         iElm.trigger('chosen:updated');
       });
+        watchCollection.push(function() {
+            return iElm.children().length;
 
+        });
       $scope.$watchGroup(watchCollection, function () {
         $timeout(function () {
           iElm.trigger('chosen:updated');
@@ -106,6 +110,7 @@
 
     // return the directive
     return {
+        
       name: 'chosen',
       scope: scope,
       restrict: 'A',
